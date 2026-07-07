@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My First Webpage - Task 1</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f4f6f5;
+    color: #22333b;
+    line-height: 1.6;
+  }
+
+  header {
+    background: linear-gradient(135deg, #0f4c46, #2e8b7c);
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+
+  header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+
+  nav {
+    background-color: #16302b;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px 0;
+  }
+
+  nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  nav a:hover {
+    color: #6fcf97;
+  }
+
+  main {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  section {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  section h2 {
+    color: #0f4c46;
+    margin-bottom: 15px;
+    border-bottom: 3px solid #6fcf97;
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+
+  section img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 15px 0;
+    display: block;
+  }
+
+  .btn {
+    background-color: #0f4c46;
+    color: #ffffff;
+    border: none;
+    padding: 12px 28px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .btn:hover {
+    background-color: #2e8b7c;
+    transform: translateY(-2px);
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #16302b;
+    color: #ffffff;
+    font-size: 0.9rem;
+  }
+
+  footer a {
+    color: #6fcf97;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to My Web Development Journey</h1>
+    <p>ApexPlanet Software Pvt Ltd — Internship Task 1</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#interact">Interact</a>
+  </nav>
+
+  <main>
+
+    <section id="about">
+      <h2>About This Page</h2>
+      <p>
+        This is a simple webpage built as part of the ApexPlanet Software
+        internship program. It demonstrates the foundational concepts of
+        HTML structure, CSS styling, and JavaScript interactivity.
+      </p>
+      <p>
+        Over the next 45 days, this project will grow from a basic static
+        page into a fully functional, responsive web application.
+      </p>
+    </section>
+
+    <section id="gallery">
+      <h2>Image Gallery</h2>
+      <p>Here's a sample image demonstrating how to embed media in HTML:</p>
+      <img src="https://picsum.photos/700/300" alt="Sample landscape image">
+      <p>
+        Learn more about web development on
+        <a href="https://developer.mozilla.org" target="_blank">MDN Web Docs</a>.
+      </p>
+    </section>
+
+    <section id="interact">
+      <h2>Try the Interactive Button</h2>
+      <p>Click the button below to see basic JavaScript interactivity in action:</p>
+      <button class="btn" id="alertBtn">Click Me!</button>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ApexPlanet Software Pvt Ltd | <a href="mailto:info@apexplanet.in">info@apexplanet.in</a></p>
+  </footer>
+
+  <script>
+    const button = document.getElementById('alertBtn');
+    button.addEventListener('click', function () {
+      alert('Hello! You just triggered a JavaScript event. 🎉');
+    });
+  </script>
+
+</body>
+</html>
