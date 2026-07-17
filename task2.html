@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task 2 - Intermediate HTML, CSS & JavaScript</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f4f6f5;
+    color: #22333b;
+    line-height: 1.6;
+  }
+
+  header {
+    background: linear-gradient(135deg, #0f4c46, #2e8b7c);
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  header h1 {
+    font-size: 2.3rem;
+    margin-bottom: 10px;
+  }
+
+  header p {
+    font-size: 1.05rem;
+    opacity: 0.9;
+  }
+
+  /* ---------- Flexbox Navigation ---------- */
+  nav {
+    background-color: #16302b;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  nav a:hover {
+    color: #6fcf97;
+  }
+
+  main {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  section {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  section h2 {
+    color: #0f4c46;
+    margin-bottom: 15px;
+    border-bottom: 3px solid #6fcf97;
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+
+  /* ---------- Contact Form ---------- */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+
+  label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #16302b;
+  }
+
+  input, textarea {
+    padding: 10px 12px;
+    border: 1px solid #cfd8d6;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+  }
+
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: #2e8b7c;
+  }
+
+  input.error, textarea.error {
+    border-color: #d9534f;
+  }
+
+  .error-message {
+    color: #d9534f;
+    font-size: 0.8rem;
+    min-height: 1em;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .btn {
+    background-color: #0f4c46;
+    color: #ffffff;
+    border: none;
+    padding: 12px 28px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .btn:hover {
+    background-color: #2e8b7c;
+    transform: translateY(-2px);
+  }
+
+  .form-status {
+    margin-top: 15px;
+    font-weight: 600;
+    display: none;
+  }
+
+  .form-status.success {
+    color: #0f4c46;
+    display: block;
+  }
+
+  /* ---------- Responsive Layout (Grid + Flexbox demo section) ---------- */
+  .layout-demo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .layout-card {
+    background-color: #eaf3f0;
+    border-radius: 8px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-left: 4px solid #2e8b7c;
+  }
+
+  .layout-card h3 {
+    color: #0f4c46;
+    font-size: 1.05rem;
+  }
+
+  /* ---------- To-Do List ---------- */
+  .todo-input-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+  }
+
+  .todo-input-row input {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  #todoList {
+    list-style: none;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #todoList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eaf3f0;
+    padding: 12px 16px;
+    border-radius: 6px;
+    border-left: 4px solid #6fcf97;
+  }
+
+  #todoList li.completed span {
+    text-decoration: line-through;
+    color: #888;
+  }
+
+  .todo-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .todo-actions button {
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .todo-actions button:hover {
+    opacity: 0.85;
+  }
+
+  .complete-btn {
+    background-color: #2e8b7c;
+    color: #fff;
+  }
+
+  .delete-btn {
+    background-color: #d9534f;
+    color: #fff;
+  }
+
+  .empty-msg {
+    color: #888;
+    font-style: italic;
+    margin-top: 15px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #16302b;
+    color: #ffffff;
+    font-size: 0.9rem;
+  }
+
+  footer a {
+    color: #6fcf97;
+    text-decoration: none;
+  }
+
+  /* ---------- Media Queries for Responsiveness ---------- */
+  @media (max-width: 700px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .layout-demo {
+      grid-template-columns: 1fr;
+    }
+
+    header h1 {
+      font-size: 1.7rem;
+    }
+
+    nav {
+      gap: 18px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <h1>Intermediate HTML, CSS &amp; JavaScript</h1>
+    <p>ApexPlanet Software Pvt Ltd — Internship Task 2</p>
+  </header>
+
+  <nav>
+    <a href="#contact">Contact Form</a>
+    <a href="#layout">Responsive Layout</a>
+    <a href="#todo">To-Do List</a>
+  </nav>
+
+  <main>
+
+    <section id="contact">
+      <h2>Contact Form</h2>
+      <p>Fill in the form below. All fields are required, and the email must be in a valid format.</p>
+
+      <form id="contactForm" class="form-grid" novalidate>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name">
+          <span class="error-message" id="nameError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com">
+          <span class="error-message" id="emailError"></span>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Write your message here..."></textarea>
+          <span class="error-message" id="messageError"></span>
+        </div>
+
+        <div class="form-group full-width">
+          <button type="submit" class="btn">Send Message</button>
+          <p class="form-status" id="formStatus">Thanks! Your message has been received.</p>
+        </div>
+      </form>
+    </section>
+
+    <section id="layout">
+      <h2>Responsive Layout (Flexbox + CSS Grid)</h2>
+      <p>The navigation bar above uses Flexbox, and the cards below use CSS Grid. Resize the window to see the layout adapt via media queries.</p>
+      <div class="layout-demo">
+        <div class="layout-card">
+          <h3>HTML</h3>
+          <p>Structures the content of the page semantically.</p>
+        </div>
+        <div class="layout-card">
+          <h3>CSS</h3>
+          <p>Styles the layout using Flexbox for the nav and Grid for content.</p>
+        </div>
+        <div class="layout-card">
+          <h3>JavaScript</h3>
+          <p>Adds interactivity like form validation and the to-do list below.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="todo">
+      <h2>Dynamic To-Do List</h2>
+      <p>Add tasks, mark them complete, or remove them — all handled dynamically with JavaScript DOM manipulation.</p>
+
+      <div class="todo-input-row">
+        <input type="text" id="todoInput" placeholder="Add a new task...">
+        <button class="btn" id="addTodoBtn">Add Task</button>
+      </div>
+
+      <ul id="todoList"></ul>
+      <p class="empty-msg" id="emptyMsg">No tasks yet. Add one above!</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ApexPlanet Software Pvt Ltd | <a href="mailto:info@apexplanet.in">info@apexplanet.in</a></p>
+  </footer>
+
+  <script>
+    /* ---------------- Contact Form Validation ---------------- */
+    const form = document.getElementById('contactForm');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+    const formStatus = document.getElementById('formStatus');
+
+    function showError(input, errorId, message) {
+      input.classList.add('error');
+      document.getElementById(errorId).textContent = message;
+    }
+
+    function clearError(input, errorId) {
+      input.classList.remove('error');
+      document.getElementById(errorId).textContent = '';
+    }
+
+    function isValidEmail(value) {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailPattern.test(value);
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      let isValid = true;
+
+      if (nameInput.value.trim() === '') {
+        showError(nameInput, 'nameError', 'Name is required.');
+        isValid = false;
+      } else {
+        clearError(nameInput, 'nameError');
+      }
+
+      if (emailInput.value.trim() === '') {
+        showError(emailInput, 'emailError', 'Email is required.');
+        isValid = false;
+      } else if (!isValidEmail(emailInput.value.trim())) {
+        showError(emailInput, 'emailError', 'Please enter a valid email address.');
+        isValid = false;
+      } else {
+        clearError(emailInput, 'emailError');
+      }
+
+      if (messageInput.value.trim() === '') {
+        showError(messageInput, 'messageError', 'Message cannot be empty.');
+        isValid = false;
+      } else {
+        clearError(messageInput, 'messageError');
+      }
+
+      if (isValid) {
+        formStatus.classList.add('success');
+        form.reset();
+        setTimeout(() => formStatus.classList.remove('success'), 4000);
+      } else {
+        formStatus.classList.remove('success');
+      }
+    });
+
+    /* ---------------- Dynamic To-Do List ---------------- */
+    const todoInput = document.getElementById('todoInput');
+    const addTodoBtn = document.getElementById('addTodoBtn');
+    const todoList = document.getElementById('todoList');
+    const emptyMsg = document.getElementById('emptyMsg');
+
+    function updateEmptyMsg() {
+      emptyMsg.style.display = todoList.children.length === 0 ? 'block' : 'none';
+    }
+
+    function addTodo() {
+      const text = todoInput.value.trim();
+      if (text === '') return;
+
+      const li = document.createElement('li');
+
+      const span = document.createElement('span');
+      span.textContent = text;
+
+      const actions = document.createElement('div');
+      actions.className = 'todo-actions';
+
+      const completeBtn = document.createElement('button');
+      completeBtn.textContent = 'Complete';
+      completeBtn.className = 'complete-btn';
+      completeBtn.addEventListener('click', function () {
+        li.classList.toggle('completed');
+      });
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = 'Delete';
+      deleteBtn.className = 'delete-btn';
+      deleteBtn.addEventListener('click', function () {
+        li.remove();
+        updateEmptyMsg();
+      });
+
+      actions.appendChild(completeBtn);
+      actions.appendChild(deleteBtn);
+      li.appendChild(span);
+      li.appendChild(actions);
+      todoList.appendChild(li);
+
+      todoInput.value = '';
+      updateEmptyMsg();
+    }
+
+    addTodoBtn.addEventListener('click', addTodo);
+    todoInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') addTodo();
+    });
+
+    updateEmptyMsg();
+  </script>
+
+</body>
+</html>
